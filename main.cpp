@@ -1,4 +1,6 @@
 #include <iostream>
+#include "Wrapper.h"
+#include "Engine.h"
 
 class Subject {
 public:
@@ -14,5 +16,11 @@ int main() {
 
     engine.registerCommand(&wrapper, "command1");
 
-    std::cout << engine.execute("command1", {{"arg1", 4}, {"arg2", 5}}) << std::endl;
+    try {
+        std::cout << engine.execute("command1", {{"arg1", 4}, {"arg2", 5}})
+                  << std::endl;
+    }
+    catch (std::exception & error) {
+        std::cout << error.what() << std::endl;
+    }
 }
